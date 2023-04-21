@@ -13,10 +13,10 @@ export class ProductsService {
 
 
   async create(createProductsDto: CreateProductsDto) {
-    const food = await this.productsRepository.create(createProductsDto)
-    await this.productsRepository.save(food)
+    const products = await this.productsRepository.create(createProductsDto)
+    await this.productsRepository.save(products)
 
-    return food;
+    return products;
   }
 
   findAll() {
@@ -28,17 +28,17 @@ export class ProductsService {
   }
 
   async update(id: string, updateProductsDto: CreateProductsDto) {
-    const findFood = await this.findOne(id);
-    const updatedFood = await this.productsRepository.merge(
-      findFood,
+    const findProducts = await this.findOne(id);
+    const updatedProducts = await this.productsRepository.merge(
+      findProducts,
       updateProductsDto
     )
-    return this.productsRepository.save(updatedFood);
+    return this.productsRepository.save(updatedProducts);
   }
 
   async remove(id: string) {
-    const food = await this.findOne(id);
-    await this.productsRepository.remove(food);
+    const products = await this.findOne(id);
+    await this.productsRepository.remove(products);
     return'Produto eliminado satisfactoramente';
   }
 }
